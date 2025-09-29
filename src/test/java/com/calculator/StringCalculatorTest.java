@@ -64,4 +64,11 @@ public class StringCalculatorTest {
 			Assert.assertTrue(e.getMessage().contains("-2"));
 		}
 	}
+
+	@Test
+	public void testGetCalledCount() {
+		calculator.add("1,2");
+		calculator.add("3,4");
+		Assert.assertEquals(2, calculator.getCalledCount());
+	}
 }
