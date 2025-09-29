@@ -71,10 +71,25 @@ public class StringCalculatorTest {
 		calculator.add("3,4");
 		Assert.assertEquals(2, calculator.getCalledCount());
 	}
-	
+
 	@Test
-    public void testIgnoreNumbersGreaterThanThousand() {
-        Assert.assertEquals(2, calculator.add("2,1001"));
-        Assert.assertEquals(1002, calculator.add("2,1000"));
-    }
+	public void testIgnoreNumbersGreaterThanThousand() {
+		Assert.assertEquals(2, calculator.add("2,1001"));
+		Assert.assertEquals(1002, calculator.add("2,1000"));
+	}
+
+	@Test
+	public void testDelimiterOfAnyLength() {
+		Assert.assertEquals(6, calculator.add("//[***]\n1***2***3"));
+	}
+
+	@Test
+	public void testMultipleDelimiters() {
+		Assert.assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+	}
+
+	@Test
+	public void testMultipleDelimitersWithLengthGreaterThanOne() {
+		Assert.assertEquals(6, calculator.add("//[**][%%]\n1**2%%3"));
+	}
 }
