@@ -36,4 +36,9 @@ public class StringCalculatorTest {
     public void testUnknownAmountOfNumbers() {
         Assert.assertEquals(10, calculator.add("1,2,3,4"));
     }
+    
+    @Test
+    public void testCustomDelimiter() {
+        Assert.assertEquals(3, calculator.add("//;\n1;2"));
+    }
 }
