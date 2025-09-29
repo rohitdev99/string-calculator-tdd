@@ -1,8 +1,5 @@
 package com.calculator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StringCalculator {
 
 	private int callCount = 0;
@@ -25,18 +22,22 @@ public class StringCalculator {
 		}
 
 		String[] tokens = numString.split(delimiter);
-		List<Integer> negatives = new ArrayList<>();
-		int sum = 0;
-		for (String token : tokens) {
-			if (!token.isEmpty()) {
-				int num = Integer.parseInt(token.trim());
-				if (num < 0) {
-					negatives.add(num);
-				}
-				sum += num;
-			}
-		}
-		if (!negatives.isEmpty()) {
+        int sum = 0;
+        StringBuilder negatives = new StringBuilder();
+        for (String token : tokens) {
+            if (!token.isEmpty()) {
+                int num = Integer.parseInt(token.trim());
+                if (num < 0) {
+                    if (negatives.length() > 0) negatives.append(",");
+                    negatives.append(num);
+                }
+                if (num <= 1000) {
+                    sum += num;
+                }
+            }
+        }
+        
+		if (negatives.length() > 0) {
 			throw new IllegalArgumentException("negatives not allowed: " + negatives);
 		}
 		return sum;

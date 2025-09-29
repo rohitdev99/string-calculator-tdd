@@ -71,4 +71,10 @@ public class StringCalculatorTest {
 		calculator.add("3,4");
 		Assert.assertEquals(2, calculator.getCalledCount());
 	}
+	
+	@Test
+    public void testIgnoreNumbersGreaterThanThousand() {
+        Assert.assertEquals(2, calculator.add("2,1001"));
+        Assert.assertEquals(1002, calculator.add("2,1000"));
+    }
 }
